@@ -78,16 +78,16 @@ def shuffle(lst):
         lt.append(lst[r]); l1.remove(lst[r])
     return lt
 
-def centre_blit(screen,img, xxx_todo_changeme,angle=0): # rotation is clockwise
-    (cx,cy) = xxx_todo_changeme
+def centre_blit(screen,img, var,angle=0): # rotation is clockwise
+    (cx,cy) = var
     img1=img
     if angle!=0: img1=pygame.transform.rotate(img,-angle)
     rect=img1.get_rect()
     screen.blit(img1,(cx-rect.width/2,cy-rect.height/2))
 
-def text_blit(screen,s,font, xxx_todo_changeme1, xxx_todo_changeme2,shadow=True):
-    (cx,cy) = xxx_todo_changeme1
-    (r,g,b) = xxx_todo_changeme2
+def text_blit(screen,s,font, var1, var2,shadow=True):
+    (cx,cy) = var1
+    (r,g,b) = var2
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.centerx=cx+2; rect.centery=cy+2
@@ -97,9 +97,9 @@ def text_blit(screen,s,font, xxx_todo_changeme1, xxx_todo_changeme2,shadow=True)
     screen.blit(text,rect)
     return rect
 
-def text_blit1(screen,s,font, xxx_todo_changeme3, xxx_todo_changeme4,shadow=True):
-    (x,y) = xxx_todo_changeme3
-    (r,g,b) = xxx_todo_changeme4
+def text_blit1(screen,s,font, var3, var4,shadow=True):
+    (x,y) = var3
+    (r,g,b) = var4
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.x=x+2; rect.y=y+2
@@ -112,8 +112,8 @@ def text_blit1(screen,s,font, xxx_todo_changeme3, xxx_todo_changeme4,shadow=True
 # m is the message
 # d is the # of pixels in the border around the text
 # (cx,cy) = co-ords centre - (0,0) means use screen centre
-def message(screen,font,m, xxx_todo_changeme5=(0,0),d=20):
-    (cx,cy) = xxx_todo_changeme5
+def message(screen,font,m, var5=(0,0),d=20):
+    (cx,cy) = var5
     if m!='':
         if pygame.font:
             text=font.render(m,True,(255,255,255))
@@ -129,8 +129,8 @@ def message(screen,font,m, xxx_todo_changeme5=(0,0),d=20):
             screen.blit(shadow,(rect.x+2,rect.y+2,rect.width,rect.height))
             screen.blit(text,rect)
 
-def mouse_on_img(img, xxx_todo_changeme6): # x,y=top left
-    (x,y) = xxx_todo_changeme6
+def mouse_on_img(img, var6): # x,y=top left
+    (x,y) = var6
     w=img.get_width()
     h=img.get_height()
     mx,my=g.pos
@@ -145,13 +145,13 @@ def mouse_on_img(img, xxx_todo_changeme6): # x,y=top left
     if col[3]<10: return False
     return True
 
-def mouse_on_img1(img, xxx_todo_changeme7):
-    (cx,cy) = xxx_todo_changeme7
+def mouse_on_img1(img, var7):
+    (cx,cy) = var7
     xy=centre_to_top_left(img,(cx,cy))
     return mouse_on_img(img,xy)
             
-def mouse_on_img_rect(img, xxx_todo_changeme8):
-    (cx,cy) = xxx_todo_changeme8
+def mouse_on_img_rect(img, var8):
+    (cx,cy) = var8
     w2=img.get_width()/2; h2=img.get_height()/2
     x1=cx-w2; y1=cy-h2; x2=cx+w2; y2=cy+h2
     return mouse_in(x1,y1,x2,y2)
@@ -176,8 +176,8 @@ def display_score():
         g.screen.blit(text,(x,y))
         centre_blit(g.screen,g.sparkle,(x-d+g.sy(.05),y+h/2-g.sy(.2)))
 
-def display_number(n, xxx_todo_changeme9,font,colour=BLACK,bgd=None,outline_font=None):
-    (cx,cy) = xxx_todo_changeme9
+def display_number(n, var9,font,colour=BLACK,bgd=None,outline_font=None):
+    (cx,cy) = var9
     if pygame.font:
         if bgd==None:
             text=font.render(str(n),True,colour)
@@ -188,21 +188,21 @@ def display_number(n, xxx_todo_changeme9,font,colour=BLACK,bgd=None,outline_font
             centre_blit(g.screen,outline,(cx,cy))
         centre_blit(g.screen,text,(cx,cy))
 
-def display_number1(n, xxx_todo_changeme10,font,colour=BLACK):
-    (x,cy) = xxx_todo_changeme10
+def display_number1(n, var10,font,colour=BLACK):
+    (x,cy) = var10
     if pygame.font:
         text=font.render(str(n),True,colour)
         y=cy-text.get_height()/2
         g.screen.blit(text,(x,y))
 
-def display_number2(screen,n, xxx_todo_changeme11,font,colour=BLACK):
-    (cx,cy) = xxx_todo_changeme11
+def display_number2(screen,n, var11,font,colour=BLACK):
+    (cx,cy) = var11
     if pygame.font:
         text=font.render(str(n),True,colour)
         centre_blit(screen,text,(cx,cy))
 
-def display_number3(screen,n, xxx_todo_changeme12,font,colour=BLACK):
-    (x,y) = xxx_todo_changeme12
+def display_number3(screen,n, var12,font,colour=BLACK):
+    (x,y) = var12
     if pygame.font:
         lead=0
         if n<10:
@@ -211,13 +211,13 @@ def display_number3(screen,n, xxx_todo_changeme12,font,colour=BLACK):
         text=font.render(s,True,colour)
         screen.blit(text,(lead+x,y))
 
-def top_left_to_centre(img, xxx_todo_changeme13):
-    (x,y) = xxx_todo_changeme13
+def top_left_to_centre(img, var13):
+    (x,y) = var13
     cx=x+img.get_width()/2; cy=y+img.get_height()/2
     return (cx,cy)
 
-def centre_to_top_left(img, xxx_todo_changeme14):
-    (cx,cy) = xxx_todo_changeme14
+def centre_to_top_left(img, var14):
+    (cx,cy) = var14
     x=cx-img.get_width()/2; y=cy-img.get_height()/2
     return (x,y)
 
