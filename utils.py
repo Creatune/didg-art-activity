@@ -87,9 +87,9 @@ def centre_blit(screen,img, img_cord,angle=0): # rotation is clockwise
     rect=img1.get_rect()
     screen.blit(img1,(cx-rect.width/2,cy-rect.height/2))
 
-def text_blit(screen,s,font, text_cord, color_cord,shadow=True):
+def text_blit(screen,s,font, text_cord, color_code,shadow=True):
     (cx,cy) = text_cord
-    (r,g,b) = color_cord
+    (r,g,b) = color_code
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.centerx=cx+2; rect.centery=cy+2
