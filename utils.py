@@ -99,9 +99,9 @@ def text_blit(screen,s,font, text_cord, color_code,shadow=True):
     screen.blit(text,rect)
     return rect
 
-def text_blit1(screen,s,font, text_cord1, color_cord1,shadow=True):
+def text_blit1(screen,s,font, text_cord1, color_code1,shadow=True):
     (x,y) = text_cord1
-    (r,g,b) = color_cord1
+    (r,g,b) = color_code1
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.x=x+2; rect.y=y+2
