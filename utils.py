@@ -80,16 +80,16 @@ def shuffle(lst):
 
 #The word 'cord' used later on in various variables refers to the word 'co-ordinates'
 
-def centre_blit(screen,img, img_cord,angle=0): # rotation is clockwise
-    (cx,cy) = img_cord
+def centre_blit(screen,img, coordinates,angle=0): # rotation is clockwise
+    (cx,cy) = coordinates
     img1=img
     if angle!=0: img1=pygame.transform.rotate(img,-angle)
     rect=img1.get_rect()
     screen.blit(img1,(cx-rect.width/2,cy-rect.height/2))
 
-def text_blit(screen,s,font, text_cord, color_code,shadow=True):
-    (cx,cy) = text_cord
-    (r,g,b) = color_code
+def text_blit(screen,s,font, coordinates, color,shadow=True):
+    (cx,cy) = coordinates
+    (r,g,b) = color
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.centerx=cx+2; rect.centery=cy+2
@@ -99,9 +99,9 @@ def text_blit(screen,s,font, text_cord, color_code,shadow=True):
     screen.blit(text,rect)
     return rect
 
-def text_blit1(screen,s,font, text_cord1, color_code1,shadow=True):
-    (x,y) = text_cord1
-    (r,g,b) = color_code1
+def text_blit1(screen,s,font, coordinates, color,shadow=True):
+    (x,y) = coordinates
+    (r,g,b) = color
     if shadow:
         text=font.render(s,True,(0,0,0))
         rect=text.get_rect(); rect.x=x+2; rect.y=y+2
@@ -114,8 +114,8 @@ def text_blit1(screen,s,font, text_cord1, color_code1,shadow=True):
 # m is the message
 # d is the # of pixels in the border around the text
 # (cx,cy) = co-ords centre - (0,0) means use screen centre
-def message(screen,font,m, msg_cord=(0,0),d=20):
-    (cx,cy) = msg_cord
+def message(screen,font,m, coordinates=(0,0),d=20):
+    (cx,cy) = coordinates
     if m!='':
         if pygame.font:
             text=font.render(m,True,(255,255,255))
@@ -131,8 +131,8 @@ def message(screen,font,m, msg_cord=(0,0),d=20):
             screen.blit(shadow,(rect.x+2,rect.y+2,rect.width,rect.height))
             screen.blit(text,rect)
 
-def mouse_on_img(img, mouse_cord): # x,y=top left
-    (x,y) = mouseImg_cord
+def mouse_on_img(img, coordinates): # x,y=top left
+    (x,y) = coordinates
     w=img.get_width()
     h=img.get_height()
     mx,my=g.pos
@@ -147,13 +147,13 @@ def mouse_on_img(img, mouse_cord): # x,y=top left
     if col[3]<10: return False
     return True
 
-def mouse_on_img1(img, mouse_cord1):
-    (cx,cy) = mouseImg_cord1
+def mouse_on_img1(img, coordinates):
+    (cx,cy) = coordinates
     xy=centre_to_top_left(img,(cx,cy))
     return mouse_on_img(img,xy)
             
-def mouse_on_img_rect(img, mouseRect_cord):
-    (cx,cy) = mouseRect_cord
+def mouse_on_img_rect(img, coordinates):
+    (cx,cy) = coordinates
     w2=img.get_width()/2; h2=img.get_height()/2
     x1=cx-w2; y1=cy-h2; x2=cx+w2; y2=cy+h2
     return mouse_in(x1,y1,x2,y2)
@@ -178,8 +178,8 @@ def display_score():
         g.screen.blit(text,(x,y))
         centre_blit(g.screen,g.sparkle,(x-d+g.sy(.05),y+h/2-g.sy(.2)))
 
-def display_number(n, DisplayNum_cord,font,colour=BLACK,bgd=None,outline_font=None):
-    (cx,cy) = DisplayNum_cord
+def display_number(n, coordinates,font,colour=BLACK,bgd=None,outline_font=None):
+    (cx,cy) = coordinates
     if pygame.font:
         if bgd==None:
             text=font.render(str(n),True,colour)
@@ -190,21 +190,21 @@ def display_number(n, DisplayNum_cord,font,colour=BLACK,bgd=None,outline_font=No
             centre_blit(g.screen,outline,(cx,cy))
         centre_blit(g.screen,text,(cx,cy))
 
-def display_number1(n, DisplayNum_cord1,font,colour=BLACK):
-    (x,cy) = DisplayNum_cord1
+def display_number1(n, coordinates,font,colour=BLACK):
+    (x,cy) = coordinates
     if pygame.font:
         text=font.render(str(n),True,colour)
         y=cy-text.get_height()/2
         g.screen.blit(text,(x,y))
 
-def display_number2(screen,n, DisplayNum_cord2,font,colour=BLACK):
-    (cx,cy) = DisplayNum_cord2
+def display_number2(screen,n, coordinates,font,colour=BLACK):
+    (cx,cy) = coordinates
     if pygame.font:
         text=font.render(str(n),True,colour)
         centre_blit(screen,text,(cx,cy))
 
-def display_number3(screen,n, DisplayNum_cord3,font,colour=BLACK):
-    (x,y) = DisplayNum_cord3
+def display_number3(screen,n, coordinates,font,colour=BLACK):
+    (x,y) = coordinates
     if pygame.font:
         lead=0
         if n<10:
@@ -213,13 +213,13 @@ def display_number3(screen,n, DisplayNum_cord3,font,colour=BLACK):
         text=font.render(s,True,colour)
         screen.blit(text,(lead+x,y))
 
-def top_left_to_centre(img, ChangeTo_centre_cord):
-    (x,y) = ChangeTo_centre_cord
+def top_left_to_centre(img, coordinates):
+    (x,y) = coordinates
     cx=x+img.get_width()/2; cy=y+img.get_height()/2
     return (cx,cy)
 
-def centre_to_top_left(img, ChangeTo_tLeft_cord):
-    (cx,cy) = ChangeTo_tLeft_cord
+def centre_to_top_left(img, coordinates):
+    (cx,cy) = coordinates
     x=cx-img.get_width()/2; y=cy-img.get_height()/2
     return (x,y)
 
