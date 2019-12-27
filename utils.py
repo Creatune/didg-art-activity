@@ -78,8 +78,6 @@ def shuffle(lst):
         lt.append(lst[r]); l1.remove(lst[r])
     return lt
 
-#The word 'cord' used later on in various variables refers to the word 'co-ordinates'
-
 def centre_blit(screen,img, coordinates,angle=0): # rotation is clockwise
     (cx,cy) = coordinates
     img1=img
